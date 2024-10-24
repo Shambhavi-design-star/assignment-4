@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_NAME 100  // Define the max length of user's name
+#define MAX_GENRES 7  // Define the maximum number of genres
+#define MAX_BOOK_NAME 100  // Define maximum length for book name
+#define MAX_LENGTH 100  // Define max length to get length of the string
+
+// Display different kind og genres to the user
+void displayGenres() {
+    printf("Different genres of books available in the library :\n");
+    printf("1. Academics\n");
+    printf("2. Science Fiction\n");
+    printf("3. Fantasy\n");
+    printf("4. Rom-Com\n");
+    printf("5. Mystery\n");
+    printf("6. Poetry\n");
+    printf("7. Motivational\n");
+}
+int main() {
+    //Declaration part
+    int n, choice;
+    char name[50];
+    char bookName[MAX_BOOK_NAME];  
+    char title[80];
+    char issuedate[11];
+    char duedate[11];
+    char combineddates[50];
+    char result[MAX_LENGTH];
+   
+    printf("Hello! Welcome to BOOKSPACE!\n");
+    //Input full name using fgets
+    printf("Enter your full name :\n");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = 0;  
+    /*while using fgets and scanf in a single code, we have to use getchar for scanf function*/
+    printf("Enter the number of books you want to read :\n");
+    scanf("%d", &n);
+    getchar();
+
+    //Display different book genres
+    displayGenres();
+
+    for (int i = 0; i < n; i++) {
+        // Ask for the user's choice
+        printf("SELECT THE GENRE OF YOUR BOOK (1-7): ");
+        scanf("%d", &choice);
+        getchar();
+
+        // Display selected genre and get book name
+        switch (choice) {
+            case 1:
+            printf("Enter the book name to be added in ACADEMICS:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;  
+            break;
+            case 2:
+            printf("Enter the book name to be added in SCIENCE FICTION:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;
+            break;
+            case 3:
+            printf("Enter the book name to be added in FANTASY:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;          
+            break;
+            case 4:
+            printf("Enter the book name to be added in ROM-COM:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;          
+            break;
+            case 5:
+            printf("Enter the book name to be added in MYSTERY:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;          
+            break;
+            case 6:
+            printf("Enter the book name to be added in POETRY:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;          
+            break;
+            case 7:
+            printf("Enter the book name to be added in MOTIVATIONAL:\n");
+            fgets(bookName, sizeof(bookName), stdin);
+            bookName[strcspn(bookName, "\n")] = 0;
+            break;
+            default:
+            printf("Invalid choice, try again...\n");
+            i--;  // Decrease index to repeat this iteration
+            continue;  // Go to the next iteration
+        }
+         strcpy(title,bookName);
+         printf("You selected the book '%s'\n",title);
+         size_t length = strlen(bookName);
+        printf("Length of the string is: %zu\n", length);
+    }
+       printf("Enter the date on which the book is issued (DD/MM/YYYY):\n");
+       scanf("%10s",issuedate);
+       getchar();
+       printf("Enter the date on which the book should be returned  (DD/MM/YYYY):\n");
+       scanf("%10s",duedate);
+       getchar();
+       
+    // Concatenating the strings
+    strcpy(combineddates, "Issue Date: ");
+    strcat(combineddates, issuedate);      
+    strcat(combineddates, ", Due Date: ");  
+    strcat(combineddates, duedate);        
+    // Printing the combined dates
+    printf("%s\n", combineddates);
+   printf("THANK YOU! VISIT AGAIN!");
+     
+           return 0;
+}
